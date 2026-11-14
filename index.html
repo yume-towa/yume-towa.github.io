@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>yume-towa | ブラウザで動くゲームとツール</title>
+<meta name="description" content="ブラウザだけで動く、小さなゲームとツールの一覧です。インストール不要で、開いてすぐに遊べます。">
+<meta name="theme-color" content="#12161C">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="canonical" href="https://yume-towa.github.io/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="yume-towa">
+<meta property="og:title" content="yume-towa | ブラウザで動くゲームとツール">
+<meta property="og:description" content="ブラウザだけで動く、小さなゲームとツールの一覧です。">
+<meta property="og:url" content="https://yume-towa.github.io/">
+<meta name="twitter:card" content="summary">
+<style>
+  :root{
+    color-scheme: dark;
+    --ink:#12161C; --panel:#1a212b; --panel2:#141a22;
+    --line:#2b3644; --line-strong:#3a4757;
+    --ivory:#ECE4D3; --ivory-rim:#cbc3b2;
+    --black:#0b0e13; --black-rim:#39434f;
+    --amber:#E0A83C; --amber-soft:rgba(224,168,60,.14); --amber-line:rgba(224,168,60,.6);
+    --cyan:#5AC4D4; --cyan-soft:rgba(90,196,212,.12);
+    --text:#CBD4DF; --strong:#EEF2F6; --muted:#7A8695;
+    --sans:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,'Hiragino Kaku Gothic ProN','Noto Sans JP',sans-serif;
+    --mono:ui-monospace,'SF Mono',Menlo,Consolas,monospace;
+    --radius:14px;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  html,body{margin:0}
+  body{
+    background:
+      radial-gradient(90% 60% at 80% -10%, rgba(224,168,60,.07) 0%, transparent 60%),
+      radial-gradient(120% 80% at 50% -10%, #1a222d 0%, var(--ink) 60%) fixed;
+    background-color:var(--ink);
+    color:var(--text); font-family:var(--sans); line-height:1.7;
+    min-height:100vh;
+  }
+  a{color:inherit}
+  /* 飾りの軌道が画面外にはみ出しても横スクロールが出ないようにする */
+  .wrap{width:100%; max-width:1040px; margin:0 auto; padding:0 16px; overflow-x:hidden; overflow-x:clip}
+  @media (min-width:720px){ .wrap{padding:0 28px} }
+
+  /* ---------- header ---------- */
+  .site-header{display:flex; align-items:center; justify-content:space-between; gap:12px; padding:20px 0}
+  .brand{display:flex; align-items:center; gap:10px; text-decoration:none; color:var(--strong);
+    font-weight:600; letter-spacing:.08em; font-size:15px}
+  .brand svg{width:28px; height:28px; flex:none}
+  .gh-link{display:inline-flex; align-items:center; gap:7px; text-decoration:none; font-size:13px; color:var(--muted);
+    border:1px solid var(--line); border-radius:100px; padding:6px 12px; transition:color .15s, border-color .15s}
+  .gh-link:hover{color:var(--strong); border-color:var(--line-strong)}
+  .gh-link svg{width:15px; height:15px; fill:currentColor}
+
+  /* ---------- hero ---------- */
+  .hero{position:relative; padding:48px 0 56px}
+  .hero-text{position:relative; z-index:1; max-width:560px}
+  .eyebrow{font-family:var(--mono); font-size:11px; letter-spacing:.32em; text-transform:uppercase; color:var(--amber); margin:0 0 14px}
+  .hero h1{font-size:clamp(28px, 6.4vw, 46px); line-height:1.3; letter-spacing:.02em; font-weight:700; color:var(--strong); margin:0 0 18px; text-wrap:balance}
+  .lead{font-size:15px; color:var(--text); margin:0; max-width:34em}
+  .orbits{position:absolute; z-index:0; pointer-events:none;
+    width:220px; right:-64px; top:8px; opacity:.4}
+  @media (min-width:640px){ .orbits{width:300px; right:-20px; top:50%; transform:translateY(-50%); opacity:.85} }
+  @media (min-width:900px){ .orbits{width:340px; right:24px} }
+  .orbits .o{fill:none; stroke:var(--line); stroke-width:1.2}
+  .orbits .o.dash{stroke-dasharray:2 7; stroke:var(--line-strong)}
+  .orbits .spin{transform-box:view-box; transform-origin:160px 160px; animation:spin 60s linear infinite}
+  .orbits .s2{animation-duration:38s; animation-direction:reverse}
+  .orbits .s3{animation-duration:22s}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  @media (prefers-reduced-motion:reduce){ .orbits .spin{animation:none} }
+
+  /* ---------- works ---------- */
+  .works{padding-bottom:72px}
+  .works-head{display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:14px 20px;
+    padding-bottom:18px; margin-bottom:24px; border-bottom:1px solid var(--line)}
+  .works-head h2{margin:0; font-size:18px; font-weight:600; color:var(--strong); letter-spacing:.06em;
+    display:flex; align-items:baseline; gap:10px}
+  .works-head h2 .total{font-family:var(--mono); font-size:12px; color:var(--muted); font-weight:500; letter-spacing:0}
+  .filters{display:flex; gap:6px; flex-wrap:wrap}
+  .filters button{font:inherit; font-size:13px; color:var(--muted); background:transparent; cursor:pointer;
+    border:1px solid var(--line); border-radius:100px; padding:5px 13px; display:inline-flex; align-items:center; gap:7px;
+    transition:color .15s, border-color .15s, background .15s}
+  .filters button:hover{color:var(--text); border-color:var(--line-strong)}
+  .filters button[aria-pressed="true"]{color:var(--ink); background:var(--amber); border-color:var(--amber); font-weight:600}
+  .filters .count{font-family:var(--mono); font-size:11px; opacity:.75}
+  .filters button:focus-visible{outline:2px solid var(--cyan); outline-offset:2px}
+
+  .grid{list-style:none; margin:0; padding:0; display:grid; gap:20px;
+    grid-template-columns:repeat(auto-fill, minmax(min(100%, 300px), 1fr))}
+
+  .card{position:relative; display:flex; flex-direction:column; border-radius:var(--radius); overflow:hidden;
+    background:linear-gradient(170deg, var(--panel), var(--panel2));
+    border:1px solid var(--line);
+    box-shadow:0 1px 0 rgba(255,255,255,.04) inset, 0 18px 40px -26px #000;
+    transition:transform .2s ease, border-color .2s ease, box-shadow .2s ease}
+  .card:hover{transform:translateY(-3px); border-color:var(--amber-line);
+    box-shadow:0 1px 0 rgba(255,255,255,.05) inset, 0 24px 44px -24px #000}
+  .card:focus-within{border-color:var(--amber-line)}
+  .thumb{aspect-ratio:16/10; background:var(--panel2); overflow:hidden; border-bottom:1px solid var(--line)}
+  .thumb img{display:block; width:100%; height:100%; object-fit:cover; transition:transform .4s ease}
+  .card:hover .thumb img{transform:scale(1.035)}
+  .thumb.placeholder{display:flex; align-items:center; justify-content:center;
+    font-family:var(--mono); font-size:13px; letter-spacing:.2em; color:var(--muted); text-transform:uppercase;
+    background:repeating-linear-gradient(135deg, var(--panel2) 0 12px, #18202a 12px 24px)}
+
+  .card-body{display:flex; flex-direction:column; flex:1; padding:18px 20px 20px}
+  .meta{display:flex; align-items:center; gap:8px; margin-bottom:8px}
+  .type{font-family:var(--mono); font-size:10.5px; letter-spacing:.18em; color:var(--cyan);
+    border:1px solid rgba(90,196,212,.35); border-radius:100px; padding:2px 9px}
+  .type[data-type="tool"]{color:#B7A0E8; border-color:rgba(183,160,232,.4)}
+  .new{font-family:var(--mono); font-size:10.5px; letter-spacing:.14em; color:var(--ink); background:var(--amber);
+    border-radius:100px; padding:2px 8px; font-weight:700}
+  .card h3{margin:0; font-size:19px; line-height:1.4; color:var(--strong); font-weight:700; letter-spacing:.03em}
+  .card-link{text-decoration:none}
+  .card-link::after{content:""; position:absolute; inset:0; z-index:1; border-radius:var(--radius)}
+  .card-link:focus-visible{outline:none}
+  .card-link:focus-visible::after{outline:2px solid var(--cyan); outline-offset:-2px}
+  .sub{margin:2px 0 0; font-family:var(--mono); font-size:11.5px; letter-spacing:.12em; color:var(--muted); text-transform:uppercase}
+  .desc{margin:12px 0 0; font-size:14px; color:var(--text)}
+  .tags{list-style:none; margin:14px 0 0; padding:0; display:flex; flex-wrap:wrap; gap:6px}
+  .tags li{font-size:12px; color:var(--muted); background:rgba(255,255,255,.03); border:1px solid var(--line); border-radius:6px; padding:1px 8px}
+  .actions{display:flex; align-items:center; justify-content:space-between; gap:12px; margin-top:auto; padding-top:18px}
+  .go{font-size:14px; font-weight:600; color:var(--amber); display:inline-flex; align-items:center; gap:6px}
+  .go svg{width:16px; height:16px; transition:transform .2s ease}
+  .card:hover .go svg{transform:translateX(3px)}
+  .src{position:relative; z-index:2; font-size:12.5px; color:var(--muted); text-decoration:none;
+    display:inline-flex; align-items:center; gap:6px; padding:4px 2px}
+  .src:hover{color:var(--strong)}
+  .src svg{width:14px; height:14px; fill:currentColor}
+  .src:focus-visible{outline:2px solid var(--cyan); outline-offset:2px; border-radius:4px}
+
+  .card.soon{background:transparent; border:1px dashed var(--line-strong); box-shadow:none; align-items:center; justify-content:center;
+    text-align:center; padding:36px 24px; min-height:220px}
+  .card.soon:hover{transform:none; border-color:var(--line-strong)}
+  .card.soon svg{width:44px; height:44px; margin-bottom:12px; opacity:.8}
+  .card.soon p{margin:0}
+  .card.soon .t{color:var(--text); font-weight:600; font-size:14px}
+  .card.soon .d{color:var(--muted); font-size:13px; margin-top:4px}
+
+  .noscript{color:var(--muted); font-size:14px}
+  .noscript a{color:var(--amber)}
+
+  /* ---------- footer ---------- */
+  .site-footer{border-top:1px solid var(--line); padding:24px 0 36px; display:flex; flex-wrap:wrap; gap:8px 20px;
+    justify-content:space-between; font-size:12.5px; color:var(--muted)}
+  .site-footer a{color:var(--muted); text-decoration:none}
+  .site-footer a:hover{color:var(--strong)}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="site-header">
+    <a class="brand" href="/" aria-label="yume-towa トップ">
+      <svg viewBox="0 0 32 32" aria-hidden="true">
+        <path d="M16 7a9 9 0 0 0 0 18z" fill="#ECE4D3"/>
+        <path d="M16 7a9 9 0 0 1 0 18z" fill="#3a4554"/>
+        <ellipse cx="16" cy="16" rx="13.5" ry="5" fill="none" stroke="#E0A83C" stroke-width="2" transform="rotate(-24 16 16)"/>
+      </svg>
+      <span>yume-towa</span>
+    </a>
+    <a class="gh-link" href="https://github.com/yume-towa" rel="noopener">
+      <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+      GitHub
+    </a>
+  </header>
+
+  <section class="hero">
+    <div class="hero-text">
+      <p class="eyebrow">Games &amp; Tools</p>
+      <h1>ブラウザで動く、<br>小さなゲームとツール。</h1>
+      <p class="lead">インストール不要で、開いてすぐに遊べるものを置いています。新しい作品は順次このページに追加していきます。</p>
+    </div>
+    <svg class="orbits" viewBox="-12 -12 344 344" aria-hidden="true">
+      <defs>
+        <radialGradient id="hw" cx="35%" cy="28%" r="75%"><stop offset="0" stop-color="#fff"/><stop offset=".55" stop-color="#ECE4D3"/><stop offset="1" stop-color="#d3cbb8"/></radialGradient>
+        <radialGradient id="hb" cx="35%" cy="28%" r="75%"><stop offset="0" stop-color="#3a4350"/><stop offset=".55" stop-color="#151a22"/><stop offset="1" stop-color="#07090c"/></radialGradient>
+      </defs>
+      <circle class="o" cx="160" cy="160" r="150"/>
+      <circle class="o dash" cx="160" cy="160" r="104"/>
+      <circle class="o" cx="160" cy="160" r="58"/>
+      <path d="M160 136a24 24 0 0 0 0 48z" fill="url(#hw)"/>
+      <path d="M160 136a24 24 0 0 1 0 48z" fill="url(#hb)"/>
+      <g class="spin s1"><circle cx="310" cy="160" r="14" fill="url(#hw)"/></g>
+      <g class="spin s2"><circle cx="160" cy="56" r="11" fill="url(#hb)" stroke="#39434f"/></g>
+      <g class="spin s3"><circle cx="102" cy="160" r="5" fill="#E0A83C"/></g>
+    </svg>
+  </section>
+
+  <section class="works" aria-labelledby="works-title">
+    <div class="works-head">
+      <h2 id="works-title">作品一覧 <span class="total" id="works-total"></span></h2>
+      <div class="filters" id="filters" role="group" aria-label="種類で絞り込む"></div>
+    </div>
+    <ul class="grid" id="works-list"></ul>
+    <noscript>
+      <p class="noscript">作品一覧の表示には JavaScript が必要です。<a href="/orbit-reversi/">旋回リバーシはこちら</a></p>
+    </noscript>
+  </section>
+
+  <footer class="site-footer">
+    <span>&copy; 2026 yume-towa</span>
+    <a href="https://github.com/yume-towa" rel="noopener">github.com/yume-towa</a>
+  </footer>
+
+</div>
+
+<script src="works.js"></script>
+<script>
+(function () {
+  "use strict";
+
+  // 作品の種類。種類を増やすときはここに足す
+  var TYPES = {
+    game: { label: "ゲーム", en: "GAME", action: "遊ぶ" },
+    tool: { label: "ツール", en: "TOOL", action: "使う" }
+  };
+  var NEW_DAYS = 30;
+
+  var works = (window.WORKS || []).slice().sort(function (a, b) {
+    return (b.added || "").localeCompare(a.added || "");
+  });
+
+  var listEl = document.getElementById("works-list");
+  var filtersEl = document.getElementById("filters");
+  var totalEl = document.getElementById("works-total");
+
+  function el(tag, attrs, children) {
+    var node = document.createElement(tag);
+    if (attrs) {
+      Object.keys(attrs).forEach(function (k) {
+        if (k === "text") node.textContent = attrs[k];
+        else if (k === "html") node.innerHTML = attrs[k]; // 固定のSVGアイコンにのみ使用
+        else node.setAttribute(k, attrs[k]);
+      });
+    }
+    (children || []).forEach(function (c) { if (c) node.appendChild(c); });
+    return node;
+  }
+
+  var ICON_ARROW = '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg>';
+  var ICON_CODE = '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4.72 3.22a.75.75 0 0 1 1.06 1.06L2.06 8l3.72 3.72a.75.75 0 1 1-1.06 1.06L.47 8.53a.75.75 0 0 1 0-1.06Zm6.56 0a.75.75 0 1 0-1.06 1.06L13.94 8l-3.72 3.72a.75.75 0 1 0 1.06 1.06l4.25-4.25a.75.75 0 0 0 0-1.06Z"/></svg>';
+  var ICON_SOON = '<svg viewBox="0 0 48 48" fill="none" aria-hidden="true"><circle cx="24" cy="24" r="20" stroke="#3a4757" stroke-dasharray="3 5"/><circle cx="24" cy="24" r="7" fill="#2b3644"/><circle cx="44" cy="24" r="3.5" fill="#E0A83C"/></svg>';
+
+  function isNew(dateStr) {
+    if (!dateStr) return false;
+    var d = new Date(dateStr + "T00:00:00");
+    if (isNaN(d)) return false;
+    var days = (Date.now() - d.getTime()) / 86400000;
+    return days >= 0 && days <= NEW_DAYS;
+  }
+
+  function card(w) {
+    var type = TYPES[w.type] || { label: w.type || "", en: (w.type || "").toUpperCase(), action: "開く" };
+
+    var thumb = w.thumb
+      ? el("div", { class: "thumb" }, [el("img", { src: w.thumb, alt: "", loading: "lazy", decoding: "async", width: "640", height: "400" })])
+      : el("div", { class: "thumb placeholder", text: w.subtitle || w.title });
+
+    var meta = el("div", { class: "meta" }, [
+      el("span", { class: "type", "data-type": w.type, text: type.label }),
+      isNew(w.added) ? el("span", { class: "new", text: "NEW" }) : null
+    ]);
+
+    var title = el("h3", null, [el("a", { class: "card-link", href: w.url, text: w.title })]);
+    var sub = w.subtitle ? el("p", { class: "sub", text: w.subtitle }) : null;
+    var desc = w.description ? el("p", { class: "desc", text: w.description }) : null;
+    var tags = (w.tags && w.tags.length)
+      ? el("ul", { class: "tags", "aria-label": "特徴" }, w.tags.map(function (t) { return el("li", { text: t }); }))
+      : null;
+
+    var go = el("span", { class: "go", "aria-hidden": "true" });
+    go.appendChild(document.createTextNode(type.action));
+    go.insertAdjacentHTML("beforeend", ICON_ARROW);
+
+    var src = null;
+    if (w.repo) {
+      src = el("a", { class: "src", href: w.repo, rel: "noopener", "aria-label": w.title + " のソースコード（GitHub）", html: ICON_CODE });
+      src.appendChild(document.createTextNode("ソース"));
+    }
+
+    var body = el("div", { class: "card-body" }, [meta, title, sub, desc, tags, el("div", { class: "actions" }, [go, src])]);
+    return el("li", { class: "card", "data-type": w.type }, [thumb, body]);
+  }
+
+  function soonCard() {
+    return el("li", { class: "card soon", "aria-label": "準備中" }, [
+      el("div", { html: ICON_SOON }),
+      el("p", { class: "t", text: "次の作品を準備中です" }),
+      el("p", { class: "d", text: "お楽しみに。" })
+    ]);
+  }
+
+  function render(filter) {
+    listEl.textContent = "";
+    works
+      .filter(function (w) { return filter === "all" || w.type === filter; })
+      .forEach(function (w) { listEl.appendChild(card(w)); });
+    listEl.appendChild(soonCard());
+
+    Array.prototype.forEach.call(filtersEl.children, function (b) {
+      b.setAttribute("aria-pressed", String(b.dataset.filter === filter));
+    });
+  }
+
+  function buildFilters() {
+    var options = [{ key: "all", label: "すべて", n: works.length }];
+    Object.keys(TYPES).forEach(function (k) {
+      options.push({
+        key: k,
+        label: TYPES[k].label,
+        n: works.filter(function (w) { return w.type === k; }).length
+      });
+    });
+    options.forEach(function (o) {
+      var b = el("button", { type: "button", "data-filter": o.key, "aria-pressed": "false" }, [
+        document.createTextNode(o.label),
+        el("span", { class: "count", text: String(o.n) })
+      ]);
+      b.addEventListener("click", function () { render(o.key); });
+      filtersEl.appendChild(b);
+    });
+  }
+
+  totalEl.textContent = works.length + " 件";
+  buildFilters();
+  render("all");
+})();
+</script>
+</body>
+</html>
