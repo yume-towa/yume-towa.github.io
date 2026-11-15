@@ -26,7 +26,7 @@ window.WORKS = [
     url: "/cube-reversi/",
     repo: "https://github.com/yume-towa/cube-reversi",
     thumb: "assets/thumbs/cube-reversi.svg",
-    tags: ["26方向", "CPU対戦", "ふたりで対戦"],
+    tags: ["ふたりで対戦", "CPU対戦", "10〜30分"],
     added: "2026-11-15",
   },
   {
@@ -39,7 +39,7 @@ window.WORKS = [
     url: "/orbit-reversi/",
     repo: "https://github.com/yume-towa/orbit-reversi",
     thumb: "assets/thumbs/orbit-reversi.svg",
-    tags: ["対人", "AI対戦", "4段階の強さ"],
+    tags: ["ふたりで対戦", "CPU対戦", "オンライン対戦", "5〜15分"],
     added: "2026-11-14",
   },
 ];
