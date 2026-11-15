@@ -17,6 +17,19 @@
  */
 window.WORKS = [
   {
+    id: "cube-reversi",
+    title: "キューブリバーシ",
+    subtitle: "Cube Reversi",
+    type: "game",
+    description:
+      "立方体の盤で遊ぶリバーシ。縦・横・奥行き・斜めの26方向で相手の石を挟みます。盤は4×4×4〜8×8×8の3サイズ。",
+    url: "/cube-reversi/",
+    repo: "https://github.com/yume-towa/cube-reversi",
+    thumb: "assets/thumbs/cube-reversi.svg",
+    tags: ["26方向", "CPU対戦", "ふたりで対戦"],
+    added: "2026-11-15",
+  },
+  {
     id: "orbit-reversi",
     title: "旋回リバーシ",
     subtitle: "Orbit Reversi",
