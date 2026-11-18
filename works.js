@@ -17,6 +17,32 @@
  */
 window.WORKS = [
   {
+    id: "hexa-reversi",
+    title: "六角形リバーシ",
+    subtitle: "Hexa Reversi",
+    type: "game",
+    description:
+      "三角形のマスでできた六角形の盤で遊ぶリバーシ。列にそって挟むほか、相手の石の2辺を囲んでもひっくり返せます。",
+    url: "/hexa-reversi/",
+    repo: "https://github.com/yume-towa/hexa-reversi",
+    thumb: "assets/thumbs/hexa-reversi.svg",
+    tags: ["ふたりで対戦", "CPU対戦", "3〜10分"],
+    added: "2026-11-18",
+  },
+  {
+    id: "gray-reversi",
+    title: "灰色リバーシ",
+    subtitle: "Gray Reversi",
+    type: "game",
+    description:
+      "一手ごとに石の色が薄れ、やがて盤上はすべて灰色に。どの石が自分のものかを覚えて戦う、記憶力のリバーシです。",
+    url: "/gray-reversi/",
+    repo: "https://github.com/yume-towa/gray-reversi",
+    thumb: "assets/thumbs/gray-reversi.svg",
+    tags: ["ふたりで対戦", "CPU対戦", "5〜15分"],
+    added: "2026-11-18",
+  },
+  {
     id: "cube-reversi",
     title: "キューブリバーシ",
     subtitle: "Cube Reversi",
