@@ -35,7 +35,7 @@ window.WORKS = [
     subtitle: "Orbit Reversi",
     type: "game",
     description:
-      "一定の手数ごとに盤面の一部が自動で回転する、オセロの変種。次に回る場所は盤上の色と矢印で予告されます。",
+      "一定の手数ごとに盤面の一部が自動で回転するリバーシ。次に回る場所は盤上の色と矢印で予告されます。",
     url: "/orbit-reversi/",
     repo: "https://github.com/yume-towa/orbit-reversi",
     thumb: "assets/thumbs/orbit-reversi.svg",
