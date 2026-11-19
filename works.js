@@ -17,6 +17,32 @@
  */
 window.WORKS = [
   {
+    id: "mitsudomoe-reversi",
+    title: "三つ巴リバーシ",
+    subtitle: "Mitsudomoe Reversi",
+    type: "game",
+    description:
+      "赤・青・緑の三人で遊ぶ、三角マスのリバーシ。真ん中の三色の石は、だれでも挟む端に使えます。盤の形は4種類。",
+    url: "/mitsudomoe-reversi/",
+    repo: "https://github.com/yume-towa/mitsudomoe-reversi",
+    thumb: "assets/thumbs/mitsudomoe-reversi.svg",
+    tags: ["3人で対戦", "CPU対戦", "5〜15分"],
+    added: "2026-11-19",
+  },
+  {
+    id: "jigsaw-kobo",
+    title: "ジグソー工房",
+    subtitle: "Jigsaw Kobo",
+    type: "tool",
+    description:
+      "手持ちの写真が、その場でジグソーパズルになります。印刷用の画像も書き出せるので、紙のパズルも作れます。",
+    url: "/jigsaw-kobo/",
+    repo: "https://github.com/yume-towa/jigsaw-kobo",
+    thumb: "assets/thumbs/jigsaw-kobo.svg",
+    tags: ["ひとりで遊ぶ", "3〜10分"],
+    added: "2026-11-19",
+  },
+  {
     id: "hexa-reversi",
     title: "六角形リバーシ",
     subtitle: "Hexa Reversi",
