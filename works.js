@@ -25,7 +25,7 @@ window.WORKS = [
       "縁日のスマートボールを3Dで。棒を引いてビー玉を打ち出し、穴に入れて、たて・よこ・ななめのビンゴを狙います。",
     url: "/bingo-smartball/",
     repo: "https://github.com/yume-towa/bingo-smartball",
-    thumb: "assets/thumbs/bingo-smartball.svg",
+    thumb: "assets/thumbs/bingo-smartball.webp",
     tags: ["ひとりで遊ぶ", "3〜5分"],
     added: "2026-11-23",
   },
