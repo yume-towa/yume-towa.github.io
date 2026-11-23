@@ -17,6 +17,45 @@
  */
 window.WORKS = [
   {
+    id: "bingo-smartball",
+    title: "ビンゴスマートボール",
+    subtitle: "Bingo Smart Ball",
+    type: "game",
+    description:
+      "縁日のスマートボールを3Dで。棒を引いてビー玉を打ち出し、穴に入れて、たて・よこ・ななめのビンゴを狙います。",
+    url: "/bingo-smartball/",
+    repo: "https://github.com/yume-towa/bingo-smartball",
+    thumb: "assets/thumbs/bingo-smartball.svg",
+    tags: ["ひとりで遊ぶ", "3〜5分"],
+    added: "2026-11-23",
+  },
+  {
+    id: "katakana-ban-game",
+    title: "横文字御法度",
+    subtitle: "Yokomoji Gohatto",
+    type: "game",
+    description:
+      "カタカナ語や英語を使わずにお題を説明する、みんなで遊ぶゲーム。スマホ1台を順番に回して遊びます。お題は450題。",
+    url: "/katakana-ban-game/",
+    repo: "https://github.com/yume-towa/katakana-ban-game",
+    thumb: "assets/thumbs/katakana-ban-game.svg",
+    tags: ["複数人で遊ぶ", "3〜15分"],
+    added: "2026-11-23",
+  },
+  {
+    id: "number-deduction",
+    title: "数字当て推理ゲーム",
+    subtitle: "Number Deduction",
+    type: "game",
+    description:
+      "金庫の暗証番号を推理して当てるゲーム。答えるたびに返ってくる「Low / Hi」と、合っている数字の個数だけが手がかりです。",
+    url: "/number-deduction/",
+    repo: "https://github.com/yume-towa/number-deduction",
+    thumb: "assets/thumbs/number-deduction.svg",
+    tags: ["ひとりで遊ぶ", "3〜5分"],
+    added: "2026-11-23",
+  },
+  {
     id: "mitsudomoe-reversi",
     title: "三つ巴リバーシ",
     subtitle: "Mitsudomoe Reversi",

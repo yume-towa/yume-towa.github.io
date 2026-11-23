@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 400" role="img" aria-label="横文字御法度のイメージ">
+<defs>
+<radialGradient id="bg" cx="50%" cy="10%" r="100%"><stop offset="0" stop-color="#3a2a1e"/><stop offset=".75" stop-color="#160f0a"/></radialGradient>
+<linearGradient id="paper" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f7f0e0"/><stop offset="1" stop-color="#ebe0c8"/></linearGradient>
+<filter id="sh" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="6" stdDeviation="6" flood-color="#000" flood-opacity=".55"/></filter>
+<filter id="rough" x="-10%" y="-10%" width="120%" height="120%"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" seed="3"/><feDisplacementMap in="SourceGraphic" scale="3"/></filter>
+</defs>
+<rect width="640" height="400" fill="url(#bg)"/>
+<g transform="rotate(-3 320 205)" filter="url(#sh)">
+<rect x="128" y="60" width="384" height="290" fill="url(#paper)"/>
+<rect x="112" y="48" width="416" height="16" rx="8" fill="#4a3322"/>
+<rect x="112" y="346" width="416" height="16" rx="8" fill="#4a3322"/>
+</g>
+<g transform="rotate(-3 320 205)">
+<path d="M176,104 h288 a18,18 0 0 1 18,18 v104 a18,18 0 0 1 -18,18 h-196 l-30,30 l6,-30 h-68 a18,18 0 0 1 -18,-18 v-104 a18,18 0 0 1 18,-18 z" fill="#fffaf0" stroke="#2a221a" stroke-width="3"/>
+<text x="320" y="196" text-anchor="middle" font-family="'Hiragino Kaku Gothic ProN','Yu Gothic','Noto Sans JP','Noto Sans CJK JP',sans-serif" font-weight="700" font-size="56" fill="#2a221a" letter-spacing="2">アジェンダ</text>
+<path d="M190,184 C260,170 380,176 452,160" stroke="#c0302b" stroke-width="11" stroke-linecap="round" fill="none" opacity=".92" filter="url(#rough)"/>
+<text x="196" y="316" font-family="'Hiragino Mincho ProN','Yu Mincho','Noto Serif JP','Noto Serif CJK JP',serif" font-weight="700" font-size="26" fill="#2a221a" letter-spacing="6">横文字御法度</text>
+</g>
+<g transform="translate(456 260) rotate(-12)" filter="url(#rough)">
+<rect x="-42" y="-42" width="84" height="84" rx="8" fill="none" stroke="#c0302b" stroke-width="6"/>
+<text x="0" y="20" text-anchor="middle" font-family="'Hiragino Mincho ProN','Yu Mincho','Noto Serif JP','Noto Serif CJK JP',serif" font-weight="800" font-size="56" fill="#c0302b">禁</text>
+</g>
+</svg>
