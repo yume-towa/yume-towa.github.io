@@ -17,6 +17,32 @@
  */
 window.WORKS = [
   {
+    id: "gacha-shogi",
+    title: "ガチャ将棋",
+    subtitle: "Gacha Shogi",
+    type: "game",
+    description:
+      "王一枚から始まる、ガチャで駒を集める将棋。引いた駒を盤に打ち、同じ駒を重ねて成らせながら、相手の王を詰ませます。",
+    url: "/gacha-shogi/",
+    repo: "https://github.com/yume-towa/gacha-shogi",
+    thumb: "assets/thumbs/gacha-shogi.webp",
+    tags: ["ふたりで遊ぶ", "CPU対戦", "5〜20分"],
+    added: "2026-11-23",
+  },
+  {
+    id: "snack-tower-drop",
+    title: "おかしタワー・ドロップ",
+    subtitle: "Snack Tower Drop",
+    type: "game",
+    description:
+      "ゲームセンターのプライズ機を3Dで。ルーレットの光をタイミングよく止めてアームを下げ、積まれたお菓子を穴に落とします。",
+    url: "/snack-tower-drop/",
+    repo: "https://github.com/yume-towa/snack-tower-drop",
+    thumb: "assets/thumbs/snack-tower-drop.webp",
+    tags: ["ひとりで遊ぶ", "3〜5分"],
+    added: "2026-11-23",
+  },
+  {
     id: "bingo-smartball",
     title: "ビンゴスマートボール",
     subtitle: "Bingo Smart Ball",
